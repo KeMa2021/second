@@ -85,6 +85,8 @@ int getMsg(){
   return buffer[0] - '0';
 }
 char sendbuf[1024 * 1000];
+int exprCnt = 0;
+bool flag = 0;
 class SMTLIBLoggingSolver : public QueryLoggingSolver
 {
         private:
@@ -117,13 +119,17 @@ class SMTLIBLoggingSolver : public QueryLoggingSolver
 
                         bool use_socket = UseSocket;
                         if (UseSocket){
-                          if (rso.str().length() > 20000){
+                          if (rso.str().length() > 200000){
                             use_socket = false;
                             socket_STP::use_Tseitin = false;
                           }else if (rso.str().length() < 2000){
                             use_socket = false;
                             socket_STP::use_Tseitin = true;
                           }
+                        }
+
+                        if (exprCnt > 100){
+                          use_socket = false;
                         }
 
 
@@ -170,6 +176,18 @@ class SMTLIBLoggingSolver : public QueryLoggingSolver
 //                          printer.generateOutput();
 ////                        llvm::errs() << rso.str();
 //                        }
+                        if (exprCnt == 0){
+                          flag = socket_STP::use_Tseitin;
+                          exprCnt++;
+                        }else {
+                          if (flag == socket_STP::use_Tseitin){
+                            exprCnt++;
+                          }else {
+                            exprCnt = 1;
+                            flag = socket_STP::use_Tseitin;
+                          }
+                        }
+
                 }    
         
 	public:
