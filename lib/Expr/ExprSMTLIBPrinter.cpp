@@ -57,7 +57,7 @@ namespace klee {
 
 ExprSMTLIBPrinter::ExprSMTLIBPrinter()
     : usedArrays(), o(NULL), query(NULL), p(NULL), haveConstantArray(false),
-      logicToUse(QF_AUFBV),
+      logicToUse(QF_ABV),
       humanReadable(ExprSMTLIBOptions::humanReadableSMTLIB),
       smtlibBoolOptions(), arraysToCallGetValueOn(NULL) {
   setConstantDisplayMode(ExprSMTLIBOptions::argConstantDisplayMode);

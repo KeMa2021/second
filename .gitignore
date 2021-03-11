@@ -6,7 +6,10 @@ Output/
 
 # commonly used as cmake build directory
 /build
-
+cmake-build-debug
+.idea
+klee-out*
+coreutils*
 cscope.*
 *~
 

@@ -1,0 +1,1 @@
+-posix-runtime --max-time=10 --use-query-log=solver:smt2 /home/pwy/Documents/GitHub/klee/examples/coreutils-6.11/obj-llvm/src/cat.bc -sym-arg 5

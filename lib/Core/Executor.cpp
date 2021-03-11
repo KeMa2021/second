@@ -148,6 +148,11 @@ cl::opt<bool> EmitAllErrors(
 
 /* Constraint solving options */
 
+//llvm::cl::opt<bool> UseSocket(
+//    "use-socket",
+//    llvm::cl::desc("Enable out method")
+//);
+
 cl::opt<unsigned> MaxSymArraySize(
     "max-sym-array-size",
     cl::desc(

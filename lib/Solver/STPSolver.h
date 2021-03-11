@@ -13,6 +13,11 @@
 
 #include "klee/Solver/Solver.h"
 
+namespace socket_STP
+{
+  extern bool use_Tseitin;
+}
+
 namespace klee {
 /// STPSolver - A complete solver based on STP.
 class STPSolver : public Solver {

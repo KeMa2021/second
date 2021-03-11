@@ -29,6 +29,11 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
+namespace socket_STP
+{
+  bool use_Tseitin = false;
+}
+
 namespace {
 
 llvm::cl::opt<bool> DebugDumpSTPQueries(
@@ -186,7 +191,8 @@ runAndGetCex(::VC vc, STPBuilder *builder, ::VCExpr q,
              std::vector<std::vector<unsigned char>> &values,
              bool &hasSolution) {
   // XXX I want to be able to timeout here, safely
-  hasSolution = !vc_query(vc, q);
+//  hasSolution = !vc_query(vc, q);
+  hasSolution = !vc_query_socket(vc,q, socket_STP::use_Tseitin);
 
   if (!hasSolution)
     return SolverImpl::SOLVER_RUN_STATUS_SUCCESS_UNSOLVABLE;
@@ -240,7 +246,8 @@ runAndGetCexForked(::VC vc, STPBuilder *builder, ::VCExpr q,
       ::signal(SIGALRM, stpTimeoutHandler);
       ::alarm(std::max(1u, static_cast<unsigned>(timeout.toSeconds())));
     }
-    int res = vc_query(vc, q);
+//    int res = vc_query(vc, q);
+    int res = vc_query_socket(vc, q, socket_STP::use_Tseitin);
     if (!res) {
       for (const auto object : objects) {
         for (unsigned offset = 0; offset < object->size; offset++) {
