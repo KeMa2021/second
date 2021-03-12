@@ -179,7 +179,7 @@ class SMTLIBLoggingSolver : public QueryLoggingSolver
                         if (exprCnt == 0){
                           flag = socket_STP::use_Tseitin;
                           exprCnt++;
-                        }else {
+                        }else if (exprCnt < 100){
                           if (flag == socket_STP::use_Tseitin){
                             exprCnt++;
                           }else {
