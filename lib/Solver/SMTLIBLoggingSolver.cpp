@@ -85,7 +85,7 @@ int getMsg(){
   return buffer[0] - '0';
 }
 char sendbuf[1024 * 1000];
-int exprCnt = 0;
+int exprCnt = 1000;
 bool flag = 0;
 class SMTLIBLoggingSolver : public QueryLoggingSolver
 {

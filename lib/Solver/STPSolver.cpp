@@ -31,7 +31,7 @@
 
 namespace socket_STP
 {
-  bool use_Tseitin = false;
+  bool use_Tseitin = true;
 }
 
 namespace {
